@@ -1,0 +1,148 @@
+object frmContatoCadastro: TfrmContatoCadastro
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Contato'
+  ClientHeight = 352
+  ClientWidth = 412
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object pnlOperacao: TPanel
+    AlignWithMargins = True
+    Left = 3
+    Top = 315
+    Width = 406
+    Height = 34
+    Align = alBottom
+    TabOrder = 0
+    ExplicitLeft = -2
+    ExplicitTop = 375
+    object btnCancelar: TSpeedButton
+      Left = 326
+      Top = 1
+      Width = 75
+      Height = 25
+      Caption = 'Cancelar'
+      ImageIndex = 1
+      Images = frmPrincipal.ImageList
+      OnClick = btnCancelarClick
+    end
+    object btnGravar: TSpeedButton
+      Left = 240
+      Top = 1
+      Width = 75
+      Height = 25
+      Caption = 'Gravar'
+      ImageIndex = 0
+      Images = frmPrincipal.ImageList
+      OnClick = btnOkClick
+    end
+  end
+  object pnlDados: TPanel
+    AlignWithMargins = True
+    Left = 3
+    Top = 3
+    Width = 406
+    Height = 106
+    Align = alTop
+    TabOrder = 1
+    object lblNome: TLabel
+      Left = 8
+      Top = 8
+      Width = 30
+      Height = 13
+      Caption = 'Nome'
+    end
+    object lblCliente: TLabel
+      Left = 11
+      Top = 54
+      Width = 36
+      Height = 13
+      Caption = 'Cliente'
+    end
+    object edtNome: TEdit
+      Left = 8
+      Top = 27
+      Width = 369
+      Height = 21
+      TabOrder = 0
+    end
+    object cboDistribuidor: TDBLookupComboBox
+      Left = 8
+      Top = 73
+      Width = 369
+      Height = 21
+      KeyField = 'CODIGO'
+      ListField = 'NOME'
+      ListSource = DM.dtsDistribuidor
+      TabOrder = 1
+    end
+  end
+  object pnlCliente: TPanel
+    AlignWithMargins = True
+    Left = 3
+    Top = 115
+    Width = 406
+    Height = 194
+    Align = alClient
+    TabOrder = 2
+    ExplicitLeft = 40
+    ExplicitTop = 152
+    ExplicitWidth = 185
+    ExplicitHeight = 41
+    object GroupBox: TGroupBox
+      AlignWithMargins = True
+      Left = 4
+      Top = 4
+      Width = 398
+      Height = 186
+      Align = alClient
+      TabOrder = 0
+      ExplicitLeft = 13
+      ExplicitTop = 73
+      ExplicitWidth = 393
+      ExplicitHeight = 187
+      object btnAdiciona: TSpeedButton
+        Left = 227
+        Top = 154
+        Width = 75
+        Height = 25
+        ImageIndex = 2
+        Images = frmPrincipal.ImageList
+      end
+      object btnRetira: TSpeedButton
+        Left = 308
+        Top = 154
+        Width = 75
+        Height = 25
+        ImageIndex = 3
+        Images = frmPrincipal.ImageList
+      end
+      object grdLimiteCredito: TDBGrid
+        AlignWithMargins = True
+        Left = 5
+        Top = 18
+        Width = 388
+        Height = 128
+        Align = alTop
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Segoe UI'
+        TitleFont.Style = []
+      end
+    end
+  end
+end

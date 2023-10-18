@@ -1,0 +1,75 @@
+object DM: TDM
+  OnCreate = DataModuleCreate
+  Height = 187
+  Width = 378
+  object DadosEmpresa: TClientDataSet
+    Aggregates = <>
+    FieldDefs = <>
+    IndexDefs = <
+      item
+        Name = 'idxNome'
+        Fields = 'Nome'
+      end>
+    IndexFieldNames = 'Nome'
+    Params = <>
+    StoreDefs = True
+    Left = 72
+    Top = 40
+    object DadosEmpresaCodigo: TAutoIncField
+      DisplayLabel = 'C'#243'digo'
+      FieldName = 'Codigo'
+    end
+    object DadosEmpresaNome: TStringField
+      FieldName = 'Nome'
+      Size = 100
+    end
+  end
+  object DataSourceEmpresa: TDataSource
+    DataSet = DadosEmpresa
+    Left = 200
+    Top = 40
+  end
+  object ParametrosEmpresa: TClientDataSet
+    PersistDataPacket.Data = {
+      B20000009619E0BD010000001800000004000000000003000000B20006436F64
+      69676F040001000200010007535542545950450200490008004175746F696E63
+      000D436F6469676F456D7072657361040001000000000006546974756C6F0100
+      4900000001000557494454480200020014000556616C6F7204004B0000000200
+      0753554254595045020049000500546578740005574944544802000200E80301
+      000C4155544F494E4356414C55450400010001000000}
+    Active = True
+    Aggregates = <>
+    IndexFieldNames = 'CodigoEmpresa'
+    Params = <>
+    OnCalcFields = ParametrosEmpresaCalcFields
+    Left = 64
+    Top = 104
+    object ParametrosEmpresaCodigo: TAutoIncField
+      FieldName = 'Codigo'
+    end
+    object ParametrosEmpresaCodigoEmpresa: TIntegerField
+      DisplayLabel = 'C'#243'digo Empresa'
+      FieldName = 'CodigoEmpresa'
+    end
+    object ParametrosEmpresaTitulo: TStringField
+      DisplayLabel = 'Arquivo'
+      FieldName = 'Titulo'
+    end
+    object ParametrosEmpresaNomeEmpresa: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'NomeEmpresa'
+      Size = 100
+      Calculated = True
+    end
+    object ParametrosEmpresaValor: TMemoField
+      FieldName = 'Valor'
+      BlobType = ftMemo
+      Size = 1000
+    end
+  end
+  object DataSourceParametrosEmpresa: TDataSource
+    DataSet = ParametrosEmpresa
+    Left = 216
+    Top = 104
+  end
+end

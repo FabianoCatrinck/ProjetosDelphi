@@ -1,0 +1,45 @@
+unit uPrincipal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, System.JSON, Vcl.StdCtrls;
+
+type
+  TForm1 = class(TForm)
+    btnCriarJson: TButton;
+    btnLerJson: TButton;
+    mmo: TMemo;
+    procedure btnCriarJsonClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.btnCriarJsonClick(Sender: TObject);
+var
+  lJson: TJsonObject;
+begin
+  try
+    lJson := TJsonObject.Create;
+    lJson.AddPair('nome', 'Heber');
+    lJson.AddPair('idade', TJsonNumber.Create(40));
+    lJson.AddPair('peso', TJsonNumber.Create(85.7));
+
+    mmo.Lines.Add(lJson.ToString)
+  finally
+    FreeAndNil(lJson);
+  end;
+
+end;
+
+end.

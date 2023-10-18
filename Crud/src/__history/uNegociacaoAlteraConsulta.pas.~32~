@@ -1,0 +1,164 @@
+unit uNegociacaoAlteraConsulta;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Buttons,
+  Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, System.ImageList, Vcl.ImgList,
+  Vcl.OleAuto;
+
+type
+  TfrmNegociacaoAlteraConsulta = class(TForm)
+    grdDistribuidor: TDBGrid;
+    RadioGroup1: TRadioGroup;
+    edtConsulta: TEdit;
+    ImageList: TImageList;
+    btnAlterar: TSpeedButton;
+    btnFechar: TSpeedButton;
+    btnRelatório: TSpeedButton;
+    procedure FormShow(Sender: TObject);
+    procedure btnAlterarClick(Sender: TObject);
+    procedure edtConsultaKeyPress(Sender: TObject; var Key: Char);
+    procedure RadioGroup1Click(Sender: TObject);
+    procedure btnFecharClick(Sender: TObject);
+    procedure btnRelatórioClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmNegociacaoAlteraConsulta: TfrmNegociacaoAlteraConsulta;
+
+implementation
+
+{$R *.dfm}
+
+uses uDM, uNegociacaoCadatro, uPrincipal;
+
+procedure TfrmNegociacaoAlteraConsulta.btnAlterarClick(Sender: TObject);
+var
+  lfrmNegociacaoCadastro: TfrmNegociacaoCadastro;
+begin
+  if DM.qryConsultaNegociacao.IsEmpty then
+    Abort;
+
+  lfrmNegociacaoCadastro := TfrmNegociacaoCadastro.Create(Application);
+
+  try
+    lfrmNegociacaoCadastro.CodigoNegociacao := DM.qryConsultaNegociacao.FieldByName('Codigo').AsInteger;
+    lfrmNegociacaoCadastro.CodigoProdutor := DM.qryConsultaNegociacao.FieldByName('Produtor').AsInteger;
+    lfrmNegociacaoCadastro.CodigoDistribuidor := DM.qryConsultaNegociacao.FieldByName('Distribuidor').AsInteger;
+    lfrmNegociacaoCadastro.Total := DM.qryConsultaNegociacao.FieldByName('valor').AsString;
+    lfrmNegociacaoCadastro.DataNegociacao := DM.qryConsultaNegociacao.FieldByName('Data').AsString;
+    lfrmNegociacaoCadastro.StatusNegociacao := DM.qryConsultaNegociacao.FieldByName('Status').AsInteger;
+    lfrmNegociacaoCadastro.ShowModal;
+    DM.qryConsultaNegociacao.DisableControls;
+  finally
+    FreeAndNil(lfrmNegociacaoCadastro);
+    DM.qryConsultaNegociacao.Close;
+    DM.qryConsultaNegociacao.Open;
+    DM.qryConsultaNegociacao.EnableControls;
+  end;
+end;
+
+procedure TfrmNegociacaoAlteraConsulta.btnFecharClick(Sender: TObject);
+begin
+  DM.qryConsultaNegociacao.Close;
+  Close;
+end;
+
+procedure TfrmNegociacaoAlteraConsulta.edtConsultaKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  if RadioGroup1.ItemIndex = 0 then
+    DM.qryConsultaNegociacao.IndexName := 'IDXPRODUTOR'
+  else
+    DM.qryConsultaNegociacao.IndexName := 'IDXDISTRIBUIDOR';
+
+  DM.qryConsultaNegociacao.FindNearest([edtConsulta.Text]);
+end;
+
+procedure TfrmNegociacaoAlteraConsulta.FormShow(Sender: TObject);
+begin
+  DM.qryConsultaNegociacao.Open;
+end;
+
+procedure TfrmNegociacaoAlteraConsulta.RadioGroup1Click(Sender: TObject);
+begin
+  edtConsulta.Clear;
+end;
+
+procedure TfrmNegociacaoAlteraConsulta.btnRelatórioClick(Sender: TObject);
+var Planilha : Variant;
+begin
+  Try
+    Planilha         := CreateOleObject('Excel.Application');//Criando a Planilha
+    Planilha.WorkBooks.Add(1);
+    Planilha.Caption := 'Consulta de Negociações';// + Caption;  //Título que aparece no canto esquerdo superior da tela
+    Planilha.Visible := True;
+
+    //Determinando a largura das células
+    Planilha.Cells[1,2].ColumnWidth := 15;//Negociação
+    Planilha.Cells[1,3].ColumnWidth := 22;//Produtor
+    Planilha.Cells[1,4].ColumnWidth := 22;//Distribuidor
+    Planilha.Cells[1,5].ColumnWidth := 22;//Data
+    Planilha.Cells[1,6].ColumnWidth := 22;//Valor
+    Planilha.Cells[1,7].ColumnWidth := 22;//Status
+
+    //Título da Planilha
+    Planilha.Cells[1,3].Font.Bold           := True;    //Negrito
+    Planilha.Cells[1,3].HorizontalAlignment := 3;//Centralizando a célula
+    Planilha.Cells[1,3]                     := Caption;
+    Planilha.Range['B1:E1'].Mergecells      := True;    //Mesclando células
+
+    //Empresa e Ano
+    Planilha.Range['B3:E3'].Font.Bold        := True; //Negrito
+    Planilha.Cells[3,2]                      := 'Nº Negociação:';
+    Planilha.Cells[3,3]                      := 'Produtor:';
+    Planilha.Cells[3,5]                      := 'Distribuidor:';
+    Planilha.Cells[3,6]                      := 'Data:';
+    Planilha.Cells[3,7]                      := 'Valor:';
+    Planilha.Cells[3,8]                      := 'Status:';
+    Planilha.Cells[4,2]                      := 'edtCodigo.Text';
+    Planilha.Cells[4,3]                      := 'edtNome.Text';
+    Planilha.Cells[4,5]                      := 'edtAno.Text';
+
+    //Conta
+    Planilha.Range['B6:E6'].Font.Bold       := True; //Negrito
+    Planilha.Cells[6,2]                     := 'Conta:';
+    Planilha.Cells[6,3]                     := 'Tipo:';
+    Planilha.Cells[6,4]                     := 'Descrição:';
+    Planilha.Cells[6,5]                     := 'Saldo:';
+    Planilha.Cells[7,2]                     := 'edtConta.Text';
+    Planilha.Cells[7,3]                     := 'edtTipo.Text';
+    Planilha.Cells[7,4]                     := 'edtDescricao.Text';
+    Planilha.Cells[7,5].HorizontalAlignment := 4;//Alinhando a célula à direita
+    Planilha.Cells[7,5]                     := 'edtAno.Text';
+
+    //Valores mês
+    Planilha.Range['B9:E9'].Interior.Color      := clSilver;     //Cor da célula
+    Planilha.Range['B9:E9'].Font.Bold           := True;         //Negrito
+//    Planilha.Range['B9:E9'].Borders.LineStyle   := xlContinuous; //Estilo  da borda
+//    Planilha.Range['B9:E21'].Borders.Weight     := xlMedium;     //Dimensão da borda
+    Planilha.Range['C9:E9'].HorizontalAlignment := 3;     //Centralizando a célula
+    Planilha.Cells[9,2]                     := 'Mês';
+    Planilha.Cells[9,3]                     := 'Entrada';
+    Planilha.Cells[9,4]                     := 'Saida';
+    Planilha.Cells[9,5]                     := 'Saldo';
+
+    //Mês
+    //dtsValor.DataSet.RecNo := 1;
+    Planilha.Range['C10','E21'].HorizontalAlignment := 4;//Alinhando a célula à direita
+    Planilha.Cells[10,2]   := 'Mês';
+//    Planilha.Cells[10,3]   := FormatFloat(‘###,###,##0.00’, dtsSaldo.DataSet.FieldByName(‘ENTRADA’).AsFloat);
+//    Planilha.Cells[10,4]   := FormatFloat(‘###,###,##0.00’, dtsSaldo.DataSet.FieldByName(‘SAIDA’  ).AsFloat);
+//    Planilha.Cells[10,5]   := FormatFloat(‘###,###,##0.00’, dtsSaldo.DataSet.FieldByName(‘SALDO’  ).AsFloat);
+  Except
+    Messagedlg('Não foi possivel gerar o arquivo de exportação. Verifique se existe o Microsoft Excel instalado.',mtWarning,[mbOk],0);
+  end;
+end;
+
+end.

@@ -1,0 +1,61 @@
+object frmDistribuidorAltera: TfrmDistribuidorAltera
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Selecione o cliente para alterar'
+  ClientHeight = 211
+  ClientWidth = 464
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  OnShow = FormShow
+  DesignSize = (
+    464
+    211)
+  PixelsPerInch = 96
+  TextHeight = 13
+  object btnAlterar: TSpeedButton
+    Left = 293
+    Top = 172
+    Width = 75
+    Height = 25
+    Anchors = []
+    Caption = 'Alterar'
+    ImageIndex = 4
+    Images = frmPrincipal.ImageList
+    OnClick = btnAlterarClick
+    ExplicitTop = 144
+  end
+  object btnFechar: TSpeedButton
+    Left = 374
+    Top = 172
+    Width = 75
+    Height = 25
+    Anchors = []
+    Caption = 'Fechar'
+    ImageIndex = 1
+    Images = frmPrincipal.ImageList
+    OnClick = btnFecharClick
+    ExplicitTop = 144
+  end
+  object grdDistribuidor: TDBGrid
+    Left = 0
+    Top = 0
+    Width = 464
+    Height = 161
+    Align = alTop
+    DataSource = DM.dtsDistribuidor
+    TabOrder = 0
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Segoe UI'
+    TitleFont.Style = []
+  end
+end

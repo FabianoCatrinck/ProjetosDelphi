@@ -1,0 +1,35 @@
+unit DataModule;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DB, Datasnap.DBClient;
+
+type
+  TDM = class(TDataModule)
+    DadosEmpresa: TClientDataSet;
+    DataSourceEmpresa: TDataSource;
+  private
+    { Private declarations }
+    procedure CarregarEmpresas();
+  public
+    { Public declarations }
+  end;
+
+var
+  DM: TDM;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+{ TDM }
+
+procedure TDM.CarregarEmpresas();
+begin
+
+end;
+
+end.

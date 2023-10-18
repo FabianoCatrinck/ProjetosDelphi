@@ -1,0 +1,87 @@
+object DM: TDM
+  OnCreate = DataModuleCreate
+  Height = 187
+  Width = 378
+  object DadosEmpresa: TClientDataSet
+    PersistDataPacket.Data = {
+      8A0000009619E0BD0100000018000000030000000000030000008A0006436F64
+      69676F040001000000010007535542545950450200490008004175746F696E63
+      00044E6F6D650100490000000100055749445448020002006400085072617374
+      69636F010049000000010005574944544802000200640001000C4155544F494E
+      4356414C55450400010001000000}
+    Active = True
+    Aggregates = <>
+    FieldDefs = <
+      item
+        Name = 'Codigo'
+        DataType = ftAutoInc
+      end
+      item
+        Name = 'Nome'
+        DataType = ftString
+        Size = 100
+      end
+      item
+        Name = 'Prastico'
+        DataType = ftString
+        Size = 100
+      end>
+    IndexDefs = <
+      item
+        Name = 'idxNome'
+        Fields = 'Nome'
+      end>
+    IndexFieldNames = 'Nome'
+    Params = <>
+    StoreDefs = True
+    Left = 72
+    Top = 40
+    object DadosEmpresaCodigo: TAutoIncField
+      DisplayLabel = 'C'#243'digo'
+      FieldName = 'Codigo'
+    end
+    object DadosEmpresaNome: TStringField
+      FieldName = 'Nome'
+      Size = 100
+    end
+    object DadosEmpresaPrastico: TStringField
+      FieldName = 'Prastico'
+      Size = 100
+    end
+  end
+  object DataSourceEmpresa: TDataSource
+    DataSet = DadosEmpresa
+    Left = 200
+    Top = 40
+  end
+  object ParametrosEmpresa: TClientDataSet
+    Aggregates = <>
+    IndexFieldNames = 'CodigoEmpresa'
+    Params = <>
+    OnCalcFields = ParametrosEmpresaCalcFields
+    Left = 64
+    Top = 104
+    object ParametrosEmpresaCodigo: TAutoIncField
+      FieldName = 'Codigo'
+    end
+    object ParametrosEmpresaCodigoEmpresa: TIntegerField
+      DisplayLabel = 'C'#243'digo Empresa'
+      FieldName = 'CodigoEmpresa'
+    end
+    object ParametrosEmpresaTitulo: TStringField
+      DisplayLabel = 'T'#237'tulo'
+      FieldName = 'Titulo'
+    end
+    object ParametrosEmpresaNomeEmpresa: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'NomeEmpresa'
+      Size = 100
+      Calculated = True
+    end
+  end
+  object DataSourceParametrosEmpresa: TDataSource
+    DataSet = ParametrosEmpresa
+    Left = 216
+    Top = 104
+  end
+end

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/10/11 13:02:17.000.996,=d:\ProjetosDelphi\Unit1.pas</Transaction>
+    <Transaction>2023/03/30 09:11:07.000.111,=d:\ProjetosDelphi\Unit1.pas</Transaction>
+    <Transaction>2023/03/30 09:14:55.000.725,d:\ProjetosDelphi\Unit1.pas=D:\ProjetosDelphi\JsonMobile\Principal.pas</Transaction>
+    <Transaction>2023/03/30 09:14:55.000.725,d:\ProjetosDelphi\Unit1.fmx=D:\ProjetosDelphi\JsonMobile\Principal.fmx</Transaction>
+    <Transaction>2023/03/30 09:15:00.000.432,d:\ProjetosDelphi\Project1.dproj=D:\ProjetosDelphi\JsonMobile\Clientes.dproj</Transaction>
+    <Transaction>2023/04/19 08:00:14.000.896,=D:\ProjetosDelphi\JsonMobile\Unit1.pas</Transaction>
+    <Transaction>2023/04/19 08:00:57.000.229,D:\ProjetosDelphi\JsonMobile\UnitDM.dfm=D:\ProjetosDelphi\JsonMobile\Unit1.dfm</Transaction>
+    <Transaction>2023/04/19 08:00:57.000.229,D:\ProjetosDelphi\JsonMobile\UnitDM.pas=D:\ProjetosDelphi\JsonMobile\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>

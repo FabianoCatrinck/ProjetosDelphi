@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/05/21 13:51:24.000.773,=D:\ProjetosDelphi\Unit1.pas</Transaction>
+    <Transaction>2022/05/21 13:52:07.000.257,D:\ProjetosDelphi\Unit1.pas=D:\Controle de Negociação\desafio_delphi_03\bin\uPrincipal.pas</Transaction>
+    <Transaction>2022/05/21 13:52:07.000.257,D:\ProjetosDelphi\Unit1.dfm=D:\Controle de Negociação\desafio_delphi_03\bin\uPrincipal.dfm</Transaction>
+    <Transaction>2022/05/21 13:52:25.000.669,D:\ProjetosDelphi\Project1.dproj=D:\Controle de Negociação\desafio_delphi_03\bin\ControleNegociacao.dproj</Transaction>
+    <Transaction>2022/05/21 14:46:16.000.223,=D:\Controle de Negociação\desafio_delphi_03\bin\Unit1.pas</Transaction>
+    <Transaction>2022/05/21 14:47:05.000.909,D:\Controle de Negociação\desafio_delphi_03\bin\Unit1.pas=D:\Controle de Negociação\desafio_delphi_03\bin\uProdutor.pas</Transaction>
+    <Transaction>2022/05/21 14:47:05.000.909,D:\Controle de Negociação\desafio_delphi_03\bin\Unit1.dfm=D:\Controle de Negociação\desafio_delphi_03\bin\uProdutor.dfm</Transaction>
+    <Transaction>2022/05/21 14:52:54.000.084,D:\Controle de Negociação\desafio_delphi_03\bin\uProdutor.pas=D:\Controle de Negociação\desafio_delphi_03\bin\uProdutorCadastro.pas</Transaction>
+    <Transaction>2022/05/21 14:52:54.000.084,D:\Controle de Negociação\desafio_delphi_03\bin\uProdutor.dfm=D:\Controle de Negociação\desafio_delphi_03\bin\uProdutorCadastro.dfm</Transaction>
+    <Transaction>2022/05/21 14:54:25.000.880,=D:\Controle de Negociação\desafio_delphi_03\bin\Unit1.pas</Transaction>
+    <Transaction>2022/05/21 14:54:48.000.884,D:\Controle de Negociação\desafio_delphi_03\bin\Unit1.pas=D:\Controle de Negociação\desafio_delphi_03\bin\uProdutorAlteraExclui.pas</Transaction>
+    <Transaction>2022/05/21 14:54:48.000.884,D:\Controle de Negociação\desafio_delphi_03\bin\Unit1.dfm=D:\Controle de Negociação\desafio_delphi_03\bin\uProdutorAlteraExclui.dfm</Transaction>
+    <Transaction>2022/05/21 15:00:08.000.425,=D:\Controle de Negociação\desafio_delphi_03\bin\Unit1.pas</Transaction>
+    <Transaction>2022/05/21 15:00:32.000.025,D:\Controle de Negociação\desafio_delphi_03\bin\Unit1.pas=D:\Controle de Negociação\desafio_delphi_03\bin\uDistribuidorCadastro.pas</Transaction>
+    <Transaction>2022/05/21 15:00:32.000.025,D:\Controle de Negociação\desafio_delphi_03\bin\Unit1.dfm=D:\Controle de Negociação\desafio_delphi_03\bin\uDistribuidorCadastro.dfm</Transaction>
+    <Transaction>2022/05/21 15:00:37.000.516,=D:\Controle de Negociação\desafio_delphi_03\bin\Unit1.pas</Transaction>
+    <Transaction>2022/05/21 15:01:20.000.027,=D:\Controle de Negociação\desafio_delphi_03\bin\Unit2.pas</Transaction>
+    <Transaction>2022/05/21 15:02:04.000.422,D:\Controle de Negociação\desafio_delphi_03\bin\Unit2.dfm=D:\Controle de Negociação\desafio_delphi_03\bin\uDistribuidorAlteraExclui.dfm</Transaction>
+    <Transaction>2022/05/21 15:02:04.000.422,D:\Controle de Negociação\desafio_delphi_03\bin\Unit2.pas=D:\Controle de Negociação\desafio_delphi_03\bin\uDistribuidorAlteraExclui.pas</Transaction>
+    <Transaction>2022/05/21 15:03:32.000.656,D:\Controle de Negociação\desafio_delphi_03\bin\Unit1.dfm=D:\Controle de Negociação\desafio_delphi_03\bin\uProdutoCadastro.dfm</Transaction>
+    <Transaction>2022/05/21 15:03:32.000.656,D:\Controle de Negociação\desafio_delphi_03\bin\Unit1.pas=D:\Controle de Negociação\desafio_delphi_03\bin\uProdutoCadastro.pas</Transaction>
+    <Transaction>2022/05/21 15:07:33.000.713,=D:\Controle de Negociação\desafio_delphi_03\bin\Unit1.pas</Transaction>
+    <Transaction>2022/05/21 15:08:07.000.076,D:\Controle de Negociação\desafio_delphi_03\bin\Unit1.dfm=D:\Controle de Negociação\desafio_delphi_03\bin\uProdutoExcluiAltera.dfm</Transaction>
+    <Transaction>2022/05/21 15:08:07.000.076,D:\Controle de Negociação\desafio_delphi_03\bin\Unit1.pas=D:\Controle de Negociação\desafio_delphi_03\bin\uProdutoExcluiAltera.pas</Transaction>
+    <Transaction>2022/05/21 15:08:26.000.514,=D:\Controle de Negociação\desafio_delphi_03\bin\Unit1.pas</Transaction>
+    <Transaction>2022/05/21 15:09:03.000.611,D:\Controle de Negociação\desafio_delphi_03\bin\Unit1.dfm=D:\Controle de Negociação\desafio_delphi_03\bin\uNegociacaoCadatro.dfm</Transaction>
+    <Transaction>2022/05/21 15:09:03.000.611,D:\Controle de Negociação\desafio_delphi_03\bin\Unit1.pas=D:\Controle de Negociação\desafio_delphi_03\bin\uNegociacaoCadatro.pas</Transaction>
+    <Transaction>2022/05/21 15:11:21.000.306,=D:\Controle de Negociação\desafio_delphi_03\bin\Unit1.pas</Transaction>
+    <Transaction>2022/05/21 15:12:13.000.310,D:\Controle de Negociação\desafio_delphi_03\bin\Unit1.pas=D:\Controle de Negociação\desafio_delphi_03\bin\uNegociacaoAlteraConsulta.pas</Transaction>
+    <Transaction>2022/05/21 15:12:13.000.310,D:\Controle de Negociação\desafio_delphi_03\bin\Unit1.dfm=D:\Controle de Negociação\desafio_delphi_03\bin\uNegociacaoAlteraConsulta.dfm</Transaction>
+    <Transaction>2022/05/24 17:57:43.000.423,=D:\Controle de Negociacao\desafio_delphi_03\src\Unit1.pas</Transaction>
+    <Transaction>2022/05/24 18:12:49.000.886,D:\Controle de Negociacao\desafio_delphi_03\src\Unit1.pas=D:\Controle de Negociacao\desafio_delphi_03\src\uDM.pas</Transaction>
+    <Transaction>2022/05/24 18:12:49.000.886,D:\Controle de Negociacao\desafio_delphi_03\src\Unit1.dfm=D:\Controle de Negociacao\desafio_delphi_03\src\uDM.dfm</Transaction>
+    <Transaction>2022/05/26 22:52:59.000.739,=D:\Controle de Negociacao\desafio_delphi_03\src\Unit1.pas</Transaction>
+    <Transaction>2022/05/26 22:57:00.000.082,D:\Controle de Negociacao\desafio_delphi_03\src\Unit1.dfm=D:\Controle de Negociacao\desafio_delphi_03\src\uLimiteCreditoCadastro.dfm</Transaction>
+    <Transaction>2022/05/26 22:57:00.000.082,D:\Controle de Negociacao\desafio_delphi_03\src\Unit1.pas=D:\Controle de Negociacao\desafio_delphi_03\src\uLimiteCreditoCadastro.pas</Transaction>
+    <Transaction>2022/05/27 12:35:36.000.904,D:\Controle de Negociacao\desafio_delphi_03\src\uDistribuidorAltera.pas=D:\Controle de Negociacao\desafio_delphi_03\src\uDistribuidorAlteraExclui.pas</Transaction>
+    <Transaction>2022/05/27 12:35:36.000.904,D:\Controle de Negociacao\desafio_delphi_03\src\uDistribuidorAltera.dfm=D:\Controle de Negociacao\desafio_delphi_03\src\uDistribuidorAlteraExclui.dfm</Transaction>
+    <Transaction>2022/05/27 12:37:58.000.107,D:\Controle de Negociacao\desafio_delphi_03\src\uProdutoAltera.pas=D:\Controle de Negociacao\desafio_delphi_03\src\uProdutoExcluiAltera.pas</Transaction>
+    <Transaction>2022/05/27 12:37:58.000.107,D:\Controle de Negociacao\desafio_delphi_03\src\uProdutoAltera.dfm=D:\Controle de Negociacao\desafio_delphi_03\src\uProdutoExcluiAltera.dfm</Transaction>
+    <Transaction>2022/05/27 12:39:27.000.070,D:\Controle de Negociacao\desafio_delphi_03\src\uProdutorAltera.pas=D:\Controle de Negociacao\desafio_delphi_03\src\uProdutorAlteraExclui.pas</Transaction>
+    <Transaction>2022/05/27 12:39:27.000.070,D:\Controle de Negociacao\desafio_delphi_03\src\uProdutorAltera.dfm=D:\Controle de Negociacao\desafio_delphi_03\src\uProdutorAlteraExclui.dfm</Transaction>
+    <Transaction>2023/08/01 22:26:15.000.468,=D:\ProjetosDelphi\Vendas2\src\Unit1.pas</Transaction>
+    <Transaction>2023/08/01 22:55:46.000.437,=D:\ProjetosDelphi\Vendas2\src\Unit1.pas</Transaction>
+    <Transaction>2023/08/01 23:05:27.000.055,D:\ProjetosDelphi\Vendas2\src\uSobre.dfm=D:\ProjetosDelphi\Vendas2\src\Unit1.dfm</Transaction>
+    <Transaction>2023/08/01 23:05:27.000.055,D:\ProjetosDelphi\Vendas2\src\uSobre.pas=D:\ProjetosDelphi\Vendas2\src\Unit1.pas</Transaction>
+    <Transaction>2023/08/11 17:46:06.000.542,D:\ProjetosDelphi\Crud\src\uDistribuidorAltera.dfm=D:\ProjetosDelphi\Crud\src\uClienteAltera.dfm</Transaction>
+    <Transaction>2023/08/11 17:46:06.000.542,D:\ProjetosDelphi\Crud\src\uDistribuidorAltera.pas=D:\ProjetosDelphi\Crud\src\uClienteAltera.pas</Transaction>
+    <Transaction>2023/08/11 17:50:51.000.783,D:\ProjetosDelphi\Crud\src\uNegociacaoAlteraConsulta.pas=</Transaction>
+    <Transaction>2023/08/11 17:50:56.000.109,D:\ProjetosDelphi\Crud\src\uNegociacaoCadatro.pas=</Transaction>
+    <Transaction>2023/08/11 17:54:28.000.561,D:\ProjetosDelphi\Crud\src\uContratoCadastro.dfm=D:\ProjetosDelphi\Crud\src\uProdutoCadastro.dfm</Transaction>
+    <Transaction>2023/08/11 17:54:28.000.561,D:\ProjetosDelphi\Crud\src\uContratoCadastro.pas=D:\ProjetosDelphi\Crud\src\uProdutoCadastro.pas</Transaction>
+    <Transaction>2023/08/11 17:59:15.000.292,D:\ProjetosDelphi\Crud\src\uContatoCadastro.pas=D:\ProjetosDelphi\Crud\src\uContratoCadastro.pas</Transaction>
+    <Transaction>2023/08/11 17:59:15.000.292,D:\ProjetosDelphi\Crud\src\uContatoCadastro.dfm=D:\ProjetosDelphi\Crud\src\uContratoCadastro.dfm</Transaction>
+    <Transaction>2023/08/11 18:01:22.000.104,D:\ProjetosDelphi\Crud\src\uProdutorCadastro.pas=</Transaction>
+    <Transaction>2023/08/11 18:01:26.000.775,D:\ProjetosDelphi\Crud\src\uProdutorAltera.pas=</Transaction>
+    <Transaction>2023/08/11 18:01:32.000.400,D:\ProjetosDelphi\Crud\src\uProdutoAltera.pas=</Transaction>
+    <Transaction>2023/08/11 18:01:36.000.911,D:\ProjetosDelphi\Crud\src\uLimiteCreditoCadastro.pas=</Transaction>
+    <Transaction>2023/08/11 18:03:56.000.756,=D:\ProjetosDelphi\Crud\src\uProdutoAltera.pas</Transaction>
+    <Transaction>2023/08/11 18:04:11.000.025,D:\ProjetosDelphi\Crud\src\uContatoAltera.pas=D:\ProjetosDelphi\Crud\src\uProdutoAltera.pas</Transaction>
+    <Transaction>2023/08/11 18:04:11.000.025,D:\ProjetosDelphi\Crud\src\uContatoAltera.dfm=D:\ProjetosDelphi\Crud\src\uProdutoAltera.dfm</Transaction>
+  </Transactions>
+</BorlandProject>

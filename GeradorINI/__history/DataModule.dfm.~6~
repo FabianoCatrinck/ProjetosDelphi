@@ -1,0 +1,10 @@
+object DM: TDM
+  Height = 480
+  Width = 640
+  object DadosEmpresa: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    Left = 72
+    Top = 40
+  end
+end

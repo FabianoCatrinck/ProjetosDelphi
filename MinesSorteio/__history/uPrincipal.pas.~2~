@@ -1,0 +1,60 @@
+unit uPrincipal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
+  Vcl.Samples.Spin;
+
+type
+  TfrmPrincipal = class(TForm)
+    pnlMines: TPanel;
+    pnlLinha5: TPanel;
+    pnlLinha1: TPanel;
+    pnlLinha2: TPanel;
+    pnlLinha3: TPanel;
+    pnlLinha4: TPanel;
+    btn5: TBitBtn;
+    btn4: TBitBtn;
+    btn3: TBitBtn;
+    btn2: TBitBtn;
+    btn1: TBitBtn;
+    btn6: TBitBtn;
+    btn8: TBitBtn;
+    btn10: TBitBtn;
+    btn9: TBitBtn;
+    btn7: TBitBtn;
+    btn11: TBitBtn;
+    btn13: TBitBtn;
+    btn15: TBitBtn;
+    btn14: TBitBtn;
+    btn12: TBitBtn;
+    btn16: TBitBtn;
+    btn18: TBitBtn;
+    btn20: TBitBtn;
+    btn19: TBitBtn;
+    btn17: TBitBtn;
+    btn21: TBitBtn;
+    btn23: TBitBtn;
+    btn25: TBitBtn;
+    btn24: TBitBtn;
+    btn22: TBitBtn;
+    lblSortear: TLabel;
+    spnQuantidadeSorteio: TSpinEdit;
+    lblCliques: TLabel;
+    btnSortear: TBitBtn;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPrincipal: TfrmPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+end.

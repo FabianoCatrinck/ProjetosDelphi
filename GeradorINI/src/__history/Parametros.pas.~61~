@@ -1,0 +1,376 @@
+unit Parametros;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
+  Data.DB, Vcl.DBCtrls, Vcl.Mask, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls,
+  DataModule, DBClient, Empresas;
+
+type
+  TTelaParametros = class(TForm)
+    pnlBotoes: TPanel;
+    BotaoCadastrar: TBitBtn;
+    BotaoCancelar: TBitBtn;
+    BotaoExcluir: TBitBtn;
+    BotaoAlterar: TBitBtn;
+    BotaoGravar: TBitBtn;
+    PageControl: TPageControl;
+    Consulta: TTabSheet;
+    DBGrid: TDBGrid;
+    Operacao: TTabSheet;
+    LabelNome: TLabel;
+    LabelTituloParametro: TLabel;
+    DBEditNomeDoArquivo: TDBEdit;
+    ComboBoxEmpresa: TComboBox;
+    BotaoCadastrarEmpresa: TBitBtn;
+    Label1: TLabel;
+    MemoParametros: TMemo;
+    BotaoGerarArquivo: TBitBtn;
+    procedure BotaoCadastrarClick(Sender: TObject);
+    procedure BotaoGravarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure btnCadastarEmpresaClick(Sender: TObject);
+    procedure BotaoAlterarClick(Sender: TObject);
+    procedure BotaoExcluirClick(Sender: TObject);
+    procedure BotaoCancelarClick(Sender: TObject);
+    procedure BotaoCadastrarEmpresaClick(Sender: TObject);
+    procedure DBGridDblClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure BotaoGerarArquivoClick(Sender: TObject);
+  private
+    { Private declarations }
+    FNomesEmpresa,
+    FCodigosEmpresa: TStringList;
+
+    procedure CadastrarEmpresa();
+    procedure AjustarTela(const Acao: Byte = 0);
+    procedure DesativarBotoesDeOperacao();
+    procedure AtivarBotoesDeAcao();
+    procedure ExecutarOperacao(const Acao: Byte = 0);
+    procedure AtivarBotoesDeOperacao();
+    procedure DesativarBotoesDeAcao();
+    procedure ExcluirParametrosEmpresa();
+    procedure ApagarParametros(const Empresa: Integer);
+    procedure GravarParametrosEmpresa();
+    function ValidarParametrosEmpresa(): Boolean;
+    procedure SalvarArquivoParametrosEmpresa();
+    procedure ObterDadosEmpresa();
+    procedure InicializarDadosDaEmpresa();
+    procedure LimparDadosEmpresa();
+    procedure GerarArquivo();
+  public
+    { Public declarations }
+  end;
+
+var
+  TelaParametros: TTelaParametros;
+
+implementation
+
+{$R *.dfm}
+
+procedure TTelaParametros.AjustarTela(const Acao: Byte);
+begin
+  case Acao of
+      //Cadastrar ou alterar
+      0, 1: begin
+              DesativarBotoesDeOperacao();
+              AtivarBotoesDeAcao();
+              PageControl.ActivePage := Operacao;
+              ExecutarOperacao(Acao);
+            end;
+
+      //Excluir
+      2: ExecutarOperacao(Acao);
+
+      //GerarArquivo
+      5: GerarArquivo();
+
+  //Gravar, cancelar e sair
+  else
+    begin
+      ExecutarOperacao(Acao);
+      AtivarBotoesDeOperacao();
+      DesativarBotoesDeAcao();
+      PageControl.ActivePage := Consulta;
+    end;
+  end;
+end;
+
+procedure TTelaParametros.ApagarParametros(const Empresa: Integer);
+begin
+
+end;
+
+procedure TTelaParametros.AtivarBotoesDeAcao;
+begin
+  BotaoGravar.Enabled := True;
+  BotaoCancelar.Enabled := True;
+end;
+
+procedure TTelaParametros.AtivarBotoesDeOperacao;
+begin
+  BotaoCadastrar.Enabled := True;
+  BotaoAlterar.Enabled := True;
+  BotaoExcluir.Enabled := True;
+  BotaoGerarArquivo.Enabled := True;
+end;
+
+procedure TTelaParametros.BotaoAlterarClick(Sender: TObject);
+begin
+  AjustarTela(1);
+end;
+
+procedure TTelaParametros.BotaoCadastrarClick(Sender: TObject);
+begin
+  AjustarTela(0);
+end;
+
+procedure TTelaParametros.BotaoCadastrarEmpresaClick(Sender: TObject);
+var
+  TelaDeEmpresas: TTelaEmpresas;
+begin
+  TelaDeEmpresas := TTelaEmpresas.Create(Application);
+
+  try
+    TelaDeEmpresas.CadastroExterno := True;
+    TelaDeEmpresas.ShowModal;
+  finally
+    FreeAndNil(TelaDeEmpresas);
+    ObterDadosEmpresa();
+  end;
+end;
+
+procedure TTelaParametros.BotaoCancelarClick(Sender: TObject);
+begin
+  AjustarTela(4);
+end;
+
+procedure TTelaParametros.BotaoExcluirClick(Sender: TObject);
+begin
+  AjustarTela(2);
+end;
+
+procedure TTelaParametros.BotaoGerarArquivoClick(Sender: TObject);
+begin
+  AjustarTela(5);
+end;
+
+procedure TTelaParametros.BotaoGravarClick(Sender: TObject);
+begin
+  AjustarTela(3);
+end;
+
+procedure TTelaParametros.btnCadastarEmpresaClick(Sender: TObject);
+begin
+  CadastrarEmpresa();
+end;
+
+procedure TTelaParametros.CadastrarEmpresa();
+begin
+
+end;
+
+procedure TTelaParametros.DBGridDblClick(Sender: TObject);
+begin
+  BotaoAlterar.Click;
+end;
+
+procedure TTelaParametros.DesativarBotoesDeAcao;
+begin
+  BotaoGravar.Enabled := False;
+  BotaoCancelar.Enabled := False;
+end;
+
+procedure TTelaParametros.DesativarBotoesDeOperacao;
+begin
+  BotaoCadastrar.Enabled := False;
+  BotaoAlterar.Enabled := False;
+  BotaoExcluir.Enabled := False;
+  BotaoGerarArquivo.Enabled := False;
+end;
+
+procedure TTelaParametros.ExcluirParametrosEmpresa;
+begin
+  if not DM.ParametrosEmpresa.IsEmpty then
+    if MessageDlg('Confirma a exclusão dos parâmetros da empresa?', mtConfirmation, [mbyes, mbNo], 0) = mrYes then
+    begin
+      try
+        //ApagarParametros(DM.ParametrosEmpresa.FieldByName('Codigo').AsInteger);
+        DM.ParametrosEmpresa.Delete;
+        MessageDlg('Parâmetros da empresa excluídos com sucesso.', mtInformation, [mbOk], 0);
+      except
+        On E:Exception do
+        begin
+          MessageDlg('Ocorreu o erro ' + E.Message + ' ao tentar excluir os parâmetros da empresa.', mtInformation, [mbOk], 0);
+        end;
+      end;
+    end;
+end;
+
+procedure TTelaParametros.ExecutarOperacao(const Acao: Byte);
+begin
+  try
+    case Acao of
+      //Cadastrar
+      0: begin
+           ComboBoxEmpresa.Enabled := True;
+           BotaoCadastrarEmpresa.Enabled := True;
+           ObterDadosEmpresa();
+           DM.ParametrosEmpresa.Append;
+         end;
+
+      //Alterar
+      1: if not DM.ParametrosEmpresa.IsEmpty then
+         begin
+           ComboBoxEmpresa.Clear;
+           ComboBoxEmpresa.Enabled := False;
+           ComboBoxEmpresa.Items.Add(DM.ParametrosEmpresa.FieldByName('NomeEmpresa').AsString);
+           ComboBoxEmpresa.ItemIndex := 0;
+           BotaoCadastrarEmpresa.Enabled := False;
+           MemoParametros.Clear;
+
+           if DM.ParametrosEmpresa.FieldByName('Valor').Text <> '' then
+             MemoParametros.Text := DM.ParametrosEmpresa.FieldByName('Valor').Value;
+
+           BotaoCadastrarEmpresa.Enabled := False;
+           DM.ParametrosEmpresa.Edit;
+         end;
+
+      //Excluir
+      2: ExcluirParametrosEmpresa();
+
+      //Gravar
+      3: GravarParametrosEmpresa();
+
+      //Cancelar
+      4: DM.ParametrosEmpresa.Cancel;
+    end;
+  finally
+    if ComboBoxEmpresa.CanFocus then
+      ComboBoxEmpresa.SetFocus;
+  end;
+end;
+
+procedure TTelaParametros.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  if DM.ParametrosEmpresa.State = dsBrowse then
+    AjustarTela(5);
+end;
+
+procedure TTelaParametros.FormShow(Sender: TObject);
+begin
+  if not DM.ParametrosEmpresa.Active then
+    DM.ParametrosEmpresa.CreateDataSet;
+
+  PageControl.ActivePage := Consulta;
+end;
+
+procedure TTelaParametros.GerarArquivo();
+var
+  Arquivo: TStringList;
+begin
+  if not DM.ParametrosEmpresa.IsEmpty then
+  begin
+    Arquivo := TStringList.Create;
+    try
+
+    finally
+      FreeAndNil(Arquivo);
+    end;
+  end;
+end;
+
+procedure TTelaParametros.GravarParametrosEmpresa();
+begin
+  if ValidarParametrosEmpresa() then
+    try
+      if ComboBoxEmpresa.Enabled then
+        DM.ParametrosEmpresa.FieldByName('CodigoEmpresa').AsString := FCodigosEmpresa.Strings[ComboBoxEmpresa.ItemIndex];
+
+      DM.ParametrosEmpresa.FieldByName('Valor').Text := MemoParametros.Text;
+
+      DM.ParametrosEmpresa.Post;
+      MessageDlg('Parâmetros da empresa gravada com sucesso.', mtInformation, [mbOk], 0);
+    Except
+      On E:Exception do
+      begin
+        MessageDlg('Ocorreu o erro ' + E.Message + ' ao gravar os parâmetros da empresa.', mtInformation, [mbOk], 0);
+      end;
+    end;
+end;
+
+procedure TTelaParametros.InicializarDadosDaEmpresa();
+begin
+  ComboBoxEmpresa.Clear;
+
+  if Assigned(FCodigosEmpresa) then
+    begin
+      FCodigosEmpresa.Clear;
+      FNomesEmpresa.Clear;
+    end
+  else
+    begin
+      FCodigosEmpresa := TStringList.Create;
+      FNomesEmpresa := TStringList.Create;
+    end;
+end;
+
+procedure TTelaParametros.LimparDadosEmpresa();
+begin
+  FCodigosEmpresa.Clear;
+  FreeAndNil(FCodigosEmpresa);
+
+  FNomesEmpresa.Clear;
+  FreeAndNil(FNomesEmpresa);
+end;
+
+procedure TTelaParametros.ObterDadosEmpresa();
+begin
+  InicializarDadosDaEmpresa();
+
+  DM.DadosEmpresa.First;
+
+  while not DM.DadosEmpresa.Eof do
+  begin
+    FCodigosEmpresa.Add(DM.DadosEmpresa.FieldByName('Codigo').AsString);
+    FNomesEmpresa.Add(DM.DadosEmpresa.FieldByName('Nome').AsString);
+    ComboBoxEmpresa.Items.Add(DM.DadosEmpresa.FieldByName('Nome').AsString);
+    DM.DadosEmpresa.Next;
+  end;
+
+  ComboBoxEmpresa.ItemIndex := 0;
+end;
+
+procedure TTelaParametros.SalvarArquivoParametrosEmpresa();
+var
+  PastaDoAplicativo: String;
+begin
+  try
+    PastaDoAplicativo := ExtractFilePath(Application.ExeName);
+    DM.ParametrosEmpresa.SaveToFile(PastaDoAplicativo + '\ParametrosEmpresa.xml', dfXML);
+    MessageDlg('Arquivo de parâmetros de empresa salvo com sucesso.', mtInformation, [mbOk], 0);
+  except
+    On E:Exception do
+    begin
+      MessageDlg('Ocorreu o erro ' + E.Message + ' ao tentar gravar o arquivo de parâmetros da empresa.', mtInformation, [mbOk], 0);
+    end;
+  end;
+end;
+
+function TTelaParametros.ValidarParametrosEmpresa: Boolean;
+begin
+  Result := True;
+
+  if DBEditNomeDoArquivo.Text = '' then
+  begin
+    MessageDlg('O nome do arquivo não pode ficar em branco. Verifique.', mtInformation, [mbOk], 0);
+    DBEditNomeDoArquivo.SetFocus;
+    Result := False;
+    Abort;
+  end;
+end;
+
+end.

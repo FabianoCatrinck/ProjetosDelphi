@@ -1,0 +1,91 @@
+unit uNegociacaoAlteraConsulta;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Buttons,
+  Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, System.ImageList, Vcl.ImgList;
+
+type
+  TfrmNegociacaoAlteraConsulta = class(TForm)
+    grdDistribuidor: TDBGrid;
+    RadioGroup1: TRadioGroup;
+    edtConsulta: TEdit;
+    ImageList: TImageList;
+    btnAlterar: TSpeedButton;
+    btnFechar: TSpeedButton;
+    procedure FormShow(Sender: TObject);
+    procedure btnAlterarClick(Sender: TObject);
+    procedure edtConsultaKeyPress(Sender: TObject; var Key: Char);
+    procedure RadioGroup1Click(Sender: TObject);
+    procedure btnFecharClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmNegociacaoAlteraConsulta: TfrmNegociacaoAlteraConsulta;
+
+implementation
+
+{$R *.dfm}
+
+uses uDM, uNegociacaoCadatro, uPrincipal;
+
+procedure TfrmNegociacaoAlteraConsulta.btnAlterarClick(Sender: TObject);
+var
+  lfrmNegociacaoCadastro: TfrmNegociacaoCadastro;
+begin
+  if DM.qryConsultaNegociacao.IsEmpty then
+    Abort;
+
+  lfrmNegociacaoCadastro := TfrmNegociacaoCadastro.Create(Application);
+
+  try
+    lfrmNegociacaoCadastro.CodigoNegociacao := DM.qryConsultaNegociacao.FieldByName('Codigo').AsInteger;
+    lfrmNegociacaoCadastro.CodigoProdutor := DM.qryConsultaNegociacao.FieldByName('Produtor').AsInteger;
+    lfrmNegociacaoCadastro.CodigoDistribuidor := DM.qryConsultaNegociacao.FieldByName('Distribuidor').AsInteger;
+    lfrmNegociacaoCadastro.Total := DM.qryConsultaNegociacao.FieldByName('valor').AsString;
+    lfrmNegociacaoCadastro.DataNegociacao := DM.qryConsultaNegociacao.FieldByName('Data').AsString;
+    lfrmNegociacaoCadastro.StatusNegociacao := DM.qryConsultaNegociacao.FieldByName('Status').AsInteger;
+    lfrmNegociacaoCadastro.ShowModal;
+    DM.qryConsultaNegociacao.DisableControls;
+  finally
+    FreeAndNil(lfrmNegociacaoCadastro);
+    DM.qryConsultaNegociacao.Close;
+    DM.qryConsultaNegociacao.Open;
+    DM.qryConsultaNegociacao.EnableControls;
+  end;
+end;
+
+procedure TfrmNegociacaoAlteraConsulta.btnFecharClick(Sender: TObject);
+begin
+  DM.qryConsultaNegociacao.Close;
+  Close;
+end;
+
+procedure TfrmNegociacaoAlteraConsulta.edtConsultaKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  if RadioGroup1.ItemIndex = 0 then
+    DM.qryConsultaNegociacao.IndexName := 'IDXPRODUTOR'
+  else
+    DM.qryConsultaNegociacao.IndexName := 'IDXDISTRIBUIDOR';
+
+  DM.qryConsultaNegociacao.FindNearest([edtConsulta.Text]);
+end;
+
+procedure TfrmNegociacaoAlteraConsulta.FormShow(Sender: TObject);
+begin
+  DM.qryConsultaNegociacao.Open;
+end;
+
+procedure TfrmNegociacaoAlteraConsulta.RadioGroup1Click(Sender: TObject);
+begin
+  edtConsulta.Clear;
+end;
+
+end.

@@ -1,0 +1,83 @@
+unit DataModule;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DB, Datasnap.DBClient,
+  Vcl.Forms, Xml.XMLDoc;
+
+type
+  TDM = class(TDataModule)
+    DadosEmpresa: TClientDataSet;
+    DataSourceEmpresa: TDataSource;
+    DadosEmpresaCodigo: TAutoIncField;
+    DadosEmpresaNome: TStringField;
+    ParametrosEmpresa: TClientDataSet;
+    DataSourceParametrosEmpresa: TDataSource;
+    ParametrosEmpresaCodigo: TAutoIncField;
+    ParametrosEmpresaCodigoEmpresa: TIntegerField;
+    ParametrosEmpresaTitulo: TStringField;
+    procedure DataModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+    procedure CarregarEmpresas();
+    procedure CarregarParametrosEmpresa(Const PastaDoAplicativo: String);
+  public
+    { Public declarations }
+  end;
+
+var
+  DM: TDM;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+{ TDM }
+
+procedure TDM.CarregarEmpresas();
+var
+  PastaDoAplicativo: String;
+begin
+  if DadosEmpresa.Active then
+    DadosEmpresa.EmptyDataSet
+  else
+    DadosEmpresa.CreateDataSet;
+
+  DadosEmpresa.Open;
+  DadosEmpresa.DisableControls;
+
+  PastaDoAplicativo := ExtractFilePath(Application.ExeName);
+
+  if FileExists(PastaDoAplicativo + '\Empresas.xml') then
+  begin
+    DadosEmpresa.LoadFromFile(PastaDoAplicativo + '\Empresas.xml');
+    DadosEmpresa.First;
+    CarregarParametrosEmpresa(PastaDoAplicativo);
+  end;
+end;
+
+procedure TDM.CarregarParametrosEmpresa(Const PastaDoAplicativo: String);
+begin
+  if ParametrosEmpresa.Active then
+    ParametrosEmpresa.EmptyDataSet
+  else
+    ParametrosEmpresa.CreateDataSet;
+
+  ParametrosEmpresa.Open;
+
+  if FileExists(PastaDoAplicativo + '\ParametrosEmpresa.xml') then
+  begin
+    ParametrosEmpresa.LoadFromFile(PastaDoAplicativo + '\ParametrosEmpresa.xml');
+    ParametrosEmpresa.First;
+  end;
+end;
+
+procedure TDM.DataModuleCreate(Sender: TObject);
+begin
+  CarregarEmpresas();
+end;
+
+end.

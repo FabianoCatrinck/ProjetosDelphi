@@ -1,0 +1,72 @@
+object DM: TDM
+  OnCreate = DataModuleCreate
+  Height = 187
+  Width = 378
+  object DadosEmpresa: TClientDataSet
+    Aggregates = <>
+    FieldDefs = <
+      item
+        Name = 'Codigo'
+        Attributes = [faReadonly]
+        DataType = ftAutoInc
+      end
+      item
+        Name = 'Nome'
+        DataType = ftString
+        Size = 200
+      end>
+    IndexDefs = <
+      item
+        Name = 'idxNome'
+        Fields = 'Nome'
+      end>
+    IndexFieldNames = 'Nome'
+    Params = <>
+    StoreDefs = True
+    Left = 72
+    Top = 40
+    object DadosEmpresaCodigo: TAutoIncField
+      DisplayLabel = 'C'#243'digo'
+      FieldName = 'Codigo'
+    end
+    object DadosEmpresaNome: TStringField
+      FieldName = 'Nome'
+      Size = 100
+    end
+  end
+  object DataSourceEmpresa: TDataSource
+    DataSet = DadosEmpresa
+    Left = 200
+    Top = 40
+  end
+  object ParametrosEmpresa: TClientDataSet
+    Aggregates = <>
+    IndexFieldNames = 'CodigoEmpresa'
+    Params = <>
+    OnCalcFields = ParametrosEmpresaCalcFields
+    Left = 64
+    Top = 104
+    object ParametrosEmpresaCodigo: TAutoIncField
+      FieldName = 'Codigo'
+    end
+    object ParametrosEmpresaCodigoEmpresa: TIntegerField
+      DisplayLabel = 'C'#243'digo Empresa'
+      FieldName = 'CodigoEmpresa'
+    end
+    object ParametrosEmpresaTitulo: TStringField
+      DisplayLabel = 'T'#237'tulo'
+      FieldName = 'Titulo'
+    end
+    object ParametrosEmpresaNomeEmpresa: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'NomeEmpresa'
+      Size = 100
+      Calculated = True
+    end
+  end
+  object DataSourceParametrosEmpresa: TDataSource
+    DataSet = ParametrosEmpresa
+    Left = 216
+    Top = 104
+  end
+end

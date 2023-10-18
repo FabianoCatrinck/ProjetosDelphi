@@ -1,0 +1,39 @@
+unit uProdutoCadastro;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons;
+
+type
+  TfrmProdutoCadastro = class(TForm)
+    lblNome: TLabel;
+    lblCPFCNPJ: TLabel;
+    edtPreco: TEdit;
+    edtNome: TEdit;
+    btnOk: TBitBtn;
+    btnCancelar: TBitBtn;
+    procedure btnCancelarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmProdutoCadastro: TfrmProdutoCadastro;
+
+implementation
+
+{$R *.dfm}
+
+uses uDM;
+
+procedure TfrmProdutoCadastro.btnCancelarClick(Sender: TObject);
+begin
+  DataModule1.qryProduto.Cancel;
+  Close;
+end;
+
+end.

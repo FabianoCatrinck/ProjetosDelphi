@@ -1,0 +1,31 @@
+unit uLimiteCreditoCadastro;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.DBCtrls,
+  Vcl.Mask;
+
+type
+  TfrmLimiteCreditoCadastro = class(TForm)
+    Label5: TLabel;
+    cboDistribuidor: TDBLookupComboBox;
+    Label2: TLabel;
+    btnOk: TBitBtn;
+    btnCancelar: TBitBtn;
+    MaskEdit1: TMaskEdit;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmLimiteCreditoCadastro: TfrmLimiteCreditoCadastro;
+
+implementation
+
+{$R *.dfm}
+
+end.

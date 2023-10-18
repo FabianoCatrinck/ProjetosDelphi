@@ -1,0 +1,67 @@
+unit Principal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.OleCtrls, SHDocVw,
+  WebView2, Winapi.ActiveX, Vcl.Edge;
+
+type
+  TForm1 = class(TForm)
+    Button1: TButton;
+    EdgeBrowser1: TEdgeBrowser;
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.Button1Click(Sender: TObject);
+var
+  lNumero,
+  lSorteio: Integer;
+begin
+//  for lSorteio := 1 to 5 do
+//  begin
+    lNumero := 1;//Random(5);
+
+    case lNumero of
+      1: EdgeBrowser1.Navigate('https://ministerioluzdosaber.com/');
+     { 2: btn2.Caption := 'X';
+      3: btn3.Caption := 'X';
+      4: btn4.Caption := 'X';
+      5: btn5.Caption := 'X';
+      6: btn6.Caption := 'X';
+      7: btn7.Caption := 'X';
+      8: btn8.Caption := 'X';
+      9: btn9.Caption := 'X';
+     10: btn10.Caption := 'X';
+     11: btn11.Caption := 'X';
+     12: btn12.Caption := 'X';
+     13: btn13.Caption := 'X';
+     14: btn14.Caption := 'X';
+     15: btn15.Caption := 'X';
+     16: btn16.Caption := 'X';
+     17: btn17.Caption := 'X';
+     18: btn18.Caption := 'X';
+     19: btn19.Caption := 'X';
+     20: btn20.Caption := 'X';
+     21: btn21.Caption := 'X';
+     22: btn22.Caption := 'X';
+     23: btn23.Caption := 'X';
+     24: btn24.Caption := 'X';
+     25: btn25.Caption := 'X';  }
+    end;
+ // end;
+end;
+
+end.

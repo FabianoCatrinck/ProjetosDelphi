@@ -1,0 +1,62 @@
+unit DataModule;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DB, Datasnap.DBClient,
+  Vcl.Forms;
+
+type
+  TDM = class(TDataModule)
+    DadosEmpresa: TClientDataSet;
+    DataSourceEmpresa: TDataSource;
+    DadosEmpresaCodigo: TAutoIncField;
+    DadosEmpresaNome: TStringField;
+    procedure DataModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+    procedure CarregarEmpresas();
+  public
+    { Public declarations }
+  end;
+
+var
+  DM: TDM;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+{ TDM }
+
+procedure TDM.CarregarEmpresas();
+
+begin
+  if DadosEmpresa.Active then
+    DadosEmpresa.EmptyDataSet
+  else
+    DadosEmpresa.CreateDataSet;
+
+  Try
+    DadosEmpresa.Open;
+    DadosEmpresa.DisableControls;
+    try
+      DadosEmpresa.LoadFromFile(ExtractFilePath(Application.ExeName) + 'Empresas.xml');
+    Except
+      DadosEmpresa.SaveToFile(ExtractFilePath(Application.ExeName) + 'Empresas.xml');
+      CarregarEmpresas();
+    end;
+  Finally
+    DadosEmpresa.First;
+    DadosEmpresa.EnableControls;
+  End;
+end;
+
+procedure TDM.DataModuleCreate(Sender: TObject);
+begin
+  CarregarEmpresas();
+end;
+
+end.

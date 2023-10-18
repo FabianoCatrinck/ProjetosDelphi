@@ -1,0 +1,25 @@
+program Crud;
+
+uses
+  Vcl.Forms,
+  uPrincipal in 'uPrincipal.pas' {frmPrincipal},
+  uProdutorCadastro in 'uProdutorCadastro.pas' {frmProdutorCadastro},
+  uProdutorAltera in 'uProdutorAltera.pas' {frmProdutorAltera},
+  uContatoCadastro in 'uContatoCadastro.pas' {frmContatoCadastro},
+  uClienteAltera in 'uClienteAltera.pas' {frmClienteAltera},
+  uProdutoAltera in 'uProdutoAltera.pas' {frmProdutoAltera},
+  uDM in 'uDM.pas' {DM: TDataModule},
+  uLimiteCreditoCadastro in 'uLimiteCreditoCadastro.pas' {frmLimiteCreditoCadastro},
+  uSobre in 'uSobre.pas' {frmSobre},
+  uClienteCadastro in 'uClienteCadastro.pas' {frmClienteCadastro};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TDM, DM);
+  Application.CreateForm(TfrmSobre, frmSobre);
+  Application.Run;
+end.

@@ -1,0 +1,59 @@
+unit uDistribuidorCadastro;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons;
+
+type
+  TfrmDistribuidorCadastro = class(TForm)
+    lblNome: TLabel;
+    lblCPFCNPJ: TLabel;
+    edtCPFCNPJ: TEdit;
+    edtNome: TEdit;
+    btnOk: TBitBtn;
+    btnCancelar: TBitBtn;
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnOkClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmDistribuidorCadastro: TfrmDistribuidorCadastro;
+
+implementation
+
+{$R *.dfm}
+
+uses uDM;
+
+procedure TfrmDistribuidorCadastro.btnCancelarClick(Sender: TObject);
+begin
+  DM.qryDistribuidor.Cancel;
+  Close;
+end;
+
+procedure TfrmDistribuidorCadastro.btnOkClick(Sender: TObject);
+begin
+  if edtNome.Text = '' then
+  begin
+    MessageDlg('O campo nome não pode ficar em branco. Verifique.', mtInformation, [mbOk], 0);
+    edtNome.SetFocus;
+    Abort;
+  end;
+
+  if DM.qryDistribuidor.Active = False then
+     DM.qryDistribuidor.Open;
+
+  DM.qryDistribuidor.FieldByName('nome').AsString := edtNome.Text;
+  DM.qryDistribuidor.FieldByName('cpfcnpj').AsString := edtCPFCNPJ.Text;
+  DM.qryDistribuidor.Post;
+
+  Close;
+end;
+
+end.

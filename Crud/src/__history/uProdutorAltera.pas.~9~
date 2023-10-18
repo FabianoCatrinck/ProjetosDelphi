@@ -1,0 +1,51 @@
+unit uProdutorAltera;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Buttons,
+  Vcl.Grids, Vcl.DBGrids;
+
+type
+  TfrmProdutorAltera = class(TForm)
+    grdProdutor: TDBGrid;
+    btnOk: TSpeedButton;
+    btnFechar: TSpeedButton;
+    procedure FormShow(Sender: TObject);
+    procedure btnFecharClick(Sender: TObject);
+    procedure btnAlterarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+implementation
+
+{$R *.dfm}
+
+uses uDM, uProdutorCadastro;
+
+procedure TfrmProdutorAltera.btnAlterarClick(Sender: TObject);
+begin
+  DM.qryProdutor.Edit;
+
+//  frmProdutorCadastro.edtNome.Text := DM.qryProdutor.FieldByName('nome').AsString;
+//  frmProdutorCadastro.edtCPFCNPJ.Text := DM.qryProdutor.FieldByName('cpfcnpj').AsString;
+//
+//  frmProdutorCadastro.ShowModal;
+end;
+
+procedure TfrmProdutorAltera.btnFecharClick(Sender: TObject);
+begin
+  DM.qryProdutor.Close;
+  Close;
+end;
+
+procedure TfrmProdutorAltera.FormShow(Sender: TObject);
+begin
+  DM.qryProdutor.Open;
+end;
+
+end.

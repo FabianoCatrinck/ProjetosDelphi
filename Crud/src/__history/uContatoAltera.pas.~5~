@@ -1,0 +1,78 @@
+unit uContatoAltera;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Buttons,
+  Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls;
+
+type
+  TfrmContatoAltera = class(TForm)
+    grdDistribuidor: TDBGrid;
+    pnlOperacao: TPanel;
+    SpeedButton3: TSpeedButton;
+    btnFechar: TSpeedButton;
+    btnAlterar: TSpeedButton;
+    procedure btnAlterarClick(Sender: TObject);
+    procedure btnFecharClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure SpeedButton3Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmContatoAltera: TfrmContatoAltera;
+
+implementation
+
+{$R *.dfm}
+
+uses uDM, uContatoCadastro;
+
+procedure TfrmContatoAltera.btnAlterarClick(Sender: TObject);
+var
+  lfrmContatoCadastro: TfrmContatoCadastro;
+begin
+  lfrmContatoCadastro := TfrmContatoCadastro.Create(Application);
+
+  try
+    lfrmContatoCadastro.Codigo := DM.qryProduto.FieldByName('Codigo').AsInteger;
+    lfrmContatoCadastro.Nome := DM.qryProduto.FieldByName('nome').AsString;
+    lfrmContatoCadastro.Preco := DM.qryProduto.FieldByName('valor').AsString;
+    lfrmContatoCadastro.ShowModal;
+    DM.qryProduto.DisableControls;
+  finally
+    FreeAndNil(lfrmContatoCadastro);
+    DM.qryProduto.Close;
+    DM.qryProduto.Open;
+    DM.qryProduto.EnableControls;
+  end;
+end;
+
+procedure TfrmContatoAltera.btnFecharClick(Sender: TObject);
+begin
+  DM.qryProduto.Close;
+  Close;
+end;
+
+procedure TfrmContatoAltera.FormShow(Sender: TObject);
+begin
+  DM.qryProduto.Open;
+end;
+
+procedure TfrmContatoAltera.SpeedButton3Click(Sender: TObject);
+begin
+  if not DM.qryContato.IsEmpty then
+    if MessageDlg('Confirma a exclusão?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+    begin
+      DM.ApagarRegistro('IdCliente ', 'TBCLIENTES', DM.qryCliente.FieldByName('IdCliente').AsInteger);
+      DM.qryCliente.Close;
+      DM.qryCliente.Open;
+    end;
+end;
+
+end.

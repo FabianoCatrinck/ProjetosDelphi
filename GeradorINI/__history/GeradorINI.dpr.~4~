@@ -1,0 +1,18 @@
+program GeradorINI;
+
+uses
+  Vcl.Forms,
+  TelaPrincipal in 'TelaPrincipal.pas' {Principal},
+  DataModule in 'DataModule.pas' {InterfaceDoDataModule: TDataModule},
+  Empresas in 'Empresas.pas' {TelaEmpresas};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TPrincipal, Principal);
+  Application.CreateForm(TInterfaceDoDataModule, InterfaceDoDataModule);
+  Application.CreateForm(TTelaEmpresas, TelaEmpresas);
+  Application.Run;
+end.

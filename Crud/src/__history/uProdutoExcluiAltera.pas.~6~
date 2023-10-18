@@ -1,0 +1,42 @@
+unit uProdutoExcluiAltera;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Buttons,
+  Vcl.Grids, Vcl.DBGrids;
+
+type
+  TfrmProdutoAlteraExclui = class(TForm)
+    grdDistribuidor: TDBGrid;
+    btnAlterar: TBitBtn;
+    btnExcluir: TBitBtn;
+    btnFechar: TBitBtn;
+    procedure btnAlterarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmProdutoAlteraExclui: TfrmProdutoAlteraExclui;
+
+implementation
+
+{$R *.dfm}
+
+uses uDM, uProdutoCadastro;
+
+procedure TfrmProdutoAlteraExclui.btnAlterarClick(Sender: TObject);
+begin
+  DataModule1.qryProduto.Edit;
+
+  frmProdutoCadastro.edtNome.Text := DataModule1.qryProduto.FieldByName('nome').AsString;
+  frmProdutoCadastro.edtCPFCNPJ.Text := DataModule1.qryProduto.FieldByName('cpfcnpj').AsString;
+
+  frmProdutoCadastro.ShowModal;
+end;
+
+end.

@@ -1,0 +1,47 @@
+unit TelaPrincipal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Empresas, Vcl.Buttons,
+  Vcl.ExtCtrls;
+
+type
+  TPrincipal = class(TForm)
+    PanelBotoes: TPanel;
+    BotaoEmpresas: TBitBtn;
+    procedure BotaoEmpresaClick(Sender: TObject);
+  private
+    { Private declarations }
+    procedure AbrirTelaEmpresas();
+  public
+    { Public declarations }
+  end;
+
+var
+  Principal: TPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+procedure TPrincipal.AbrirTelaEmpresas;
+var
+  TelaDeEmpresas: TTelaEmpresas;
+begin
+  TelaDeEmpresas := TTelaEmpresas.Create(Application);
+
+  try
+    TelaDeEmpresas.ShowModal;
+  finally
+    FreeAndNil(TelaDeEmpresas);
+  end;
+end;
+
+procedure TPrincipal.BotaoEmpresaClick(Sender: TObject);
+begin
+  AbrirTelaEmpresas();
+end;
+
+end.

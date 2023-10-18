@@ -1,0 +1,115 @@
+object frmClienteAltera: TfrmClienteAltera
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Selecione o cliente para alterar'
+  ClientHeight = 203
+  ClientWidth = 556
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object grdDistribuidor: TDBGrid
+    AlignWithMargins = True
+    Left = 3
+    Top = 3
+    Width = 550
+    Height = 161
+    Align = alTop
+    DataSource = DM.dtsCliente
+    TabOrder = 0
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Segoe UI'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'IdCliente'
+        Width = 50
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'RazaoSocial'
+        Width = 200
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DtNascimento'
+        Width = 80
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'CPF'
+        Width = 80
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'CNPJ'
+        Width = 100
+        Visible = True
+      end>
+  end
+  object pnlOperacao: TPanel
+    AlignWithMargins = True
+    Left = 3
+    Top = 164
+    Width = 550
+    Height = 36
+    Align = alBottom
+    TabOrder = 1
+    ExplicitWidth = 458
+    DesignSize = (
+      550
+      36)
+    object btnFechar: TSpeedButton
+      Left = 457
+      Top = 5
+      Width = 75
+      Height = 25
+      Anchors = []
+      Caption = 'Fechar'
+      ImageIndex = 1
+      Images = frmPrincipal.ImageList
+      OnClick = btnFecharClick
+      ExplicitLeft = 374
+    end
+    object btnAlterar: TSpeedButton
+      Left = 359
+      Top = 5
+      Width = 75
+      Height = 25
+      Anchors = []
+      Caption = 'Alterar'
+      ImageIndex = 4
+      Images = frmPrincipal.ImageList
+      OnClick = btnAlterarClick
+      ExplicitLeft = 293
+    end
+    object btnExcluir: TSpeedButton
+      Left = 263
+      Top = 5
+      Width = 75
+      Height = 25
+      Anchors = []
+      Caption = 'Excluir'
+      ImageIndex = 10
+      Images = frmPrincipal.ImageList
+      OnClick = btnExcluirClick
+      ExplicitLeft = 213
+    end
+  end
+end

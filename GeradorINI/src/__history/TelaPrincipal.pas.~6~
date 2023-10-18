@@ -1,0 +1,68 @@
+unit TelaPrincipal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Empresas, Vcl.Buttons,
+  Vcl.ExtCtrls, Parametros;
+
+type
+  TPrincipal = class(TForm)
+    PanelBotoes: TPanel;
+    BotaoEmpresas: TBitBtn;
+    BotaoParametros: TBitBtn;
+    procedure BotaoEmpresaClick(Sender: TObject);
+    procedure BotaoParametrosClick(Sender: TObject);
+  private
+    { Private declarations }
+    procedure AbrirTelaEmpresas();
+    procedure AbrirTelaParametros();
+  public
+    { Public declarations }
+  end;
+
+var
+  Principal: TPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+procedure TPrincipal.AbrirTelaEmpresas;
+var
+  TelaDeEmpresas: TTelaEmpresas;
+begin
+  TelaDeEmpresas := TTelaEmpresas.Create(Application);
+
+  try
+    TelaDeEmpresas.ShowModal;
+  finally
+    FreeAndNil(TelaDeEmpresas);
+  end;
+end;
+
+procedure TPrincipal.AbrirTelaParametros();
+var
+  TelaDeParametros: TTelaParametros;
+begin
+  TelaDeParametros := TTelaParametros.Create(Application);
+
+  try
+    TelaDeParametros.ShowModal;
+  finally
+    FreeAndNil(TelaDeParametros);
+  end;
+end;
+
+procedure TPrincipal.BotaoEmpresaClick(Sender: TObject);
+begin
+  AbrirTelaEmpresas();
+end;
+
+procedure TPrincipal.BotaoParametrosClick(Sender: TObject);
+begin
+  AbrirTelaParametros();
+end;
+
+end.

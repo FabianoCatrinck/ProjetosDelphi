@@ -1,0 +1,37 @@
+unit TelaPrincipal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+type
+  TPrincipal = class(TForm)
+    BotaoEmpresa: TButton;
+    procedure BotaoEmpresaClick(Sender: TObject);
+  private
+    { Private declarations }
+    procedure AbrirTelaEmpresas();
+  public
+    { Public declarations }
+  end;
+
+var
+  Principal: TPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+procedure TPrincipal.AbrirTelaEmpresas;
+begin
+
+end;
+
+procedure TPrincipal.BotaoEmpresaClick(Sender: TObject);
+begin
+  AbrirTelaEmpresas();
+end;
+
+end.

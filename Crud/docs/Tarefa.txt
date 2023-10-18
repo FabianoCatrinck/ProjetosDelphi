@@ -1,0 +1,7 @@
+Desenvolva um programa em Delphi:
+- Utilize componentes nativos do Delphi, Utilize VCL para fazer o layout
+- Crie o banco BDCANDITADO no SQLite com as tabelas TbClientes (IdCliente identity, Cliente varchar(20), RazaoSocial varchar(60), CNPJ varchar(14), CPF varchar(11), DtNascimento smalldatetime) e TbContatos (IdContato identity, IdCliente int (fk com a TbClientes), Nome varchar(60))
+- Crie um programa que insira, altere, delete e consulte os dados da TbClientes e TbContatos. Fica a seu critério como será o layout da tela e sua regra de negócio.
+
+Peço que me envie os arquivos *.dpr, *.pas e *.dfm deste projeto e o banco de dados SQLite.
+Lembrando que conforme combinamos aguardo sua resposta até segunda-feira 14/08.

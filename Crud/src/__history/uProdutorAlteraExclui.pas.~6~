@@ -1,0 +1,59 @@
+unit uProdutorAlteraExclui;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Buttons,
+  Vcl.Grids, Vcl.DBGrids;
+
+type
+  TfrmProdutorAlteraExclui = class(TForm)
+    grdProdutor: TDBGrid;
+    btnAlterar: TBitBtn;
+    btnExcluir: TBitBtn;
+    btnFechar: TBitBtn;
+    procedure FormShow(Sender: TObject);
+    procedure btnFecharClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
+    procedure btnAlterarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmProdutorAlteraExclui: TfrmProdutorAlteraExclui;
+
+implementation
+
+{$R *.dfm}
+
+uses uDM;
+
+procedure TfrmProdutorAlteraExclui.btnAlterarClick(Sender: TObject);
+begin
+  DataModule1.qryProdutor.Edit;
+
+  frmProdutorCadastro.ShowModal;
+end;
+
+procedure TfrmProdutorAlteraExclui.btnExcluirClick(Sender: TObject);
+begin
+  if MessageDlg('Confirma a exclusão?', mtConfirmation, [mbOk], 0) = mrYes then
+    DataModule1.qryProdutor.Delete;
+end;
+
+procedure TfrmProdutorAlteraExclui.btnFecharClick(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TfrmProdutorAlteraExclui.FormShow(Sender: TObject);
+begin
+  if DataModule1.qryProdutor.Active = False then
+    DataModule1.qryProdutor.Open;
+end;
+
+end.

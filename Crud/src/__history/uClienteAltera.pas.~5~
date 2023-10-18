@@ -1,0 +1,73 @@
+unit uClienteAltera;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Buttons,
+  Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls;
+
+type
+  TfrmClienteAltera = class(TForm)
+    grdDistribuidor: TDBGrid;
+    pnlOperacao: TPanel;
+    btnFechar: TSpeedButton;
+    btnAlterar: TSpeedButton;
+    SpeedButton1: TSpeedButton;
+    procedure btnAlterarClick(Sender: TObject);
+    procedure btnFecharClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmClienteAltera: TfrmClienteAltera;
+
+implementation
+
+{$R *.dfm}
+
+uses uDM, uClienteCadastro;
+
+procedure TfrmClienteAltera.btnAlterarClick(Sender: TObject);
+var
+  lfrmClienteCadastro: TfrmClienteCadastro;
+begin
+  lfrmClienteCadastro := TfrmClienteCadastro.Create(Application);
+
+  try
+    lfrmClienteCadastro.Codigo := DM.qryCliente.FieldByName('Codigo').AsInteger;
+    lfrmClienteCadastro.Nome := DM.qryCliente.FieldByName('nome').AsString;
+    lfrmClienteCadastro.RazaoSocial := DM.qryCliente.FieldByName('RazaoSocial').AsString;
+
+    if Length(DM.qryCliente.FieldByName('cnpj').AsString) > 0 then
+      lfrmClienteCadastro.CPFCNPJ := DM.qryCliente.FieldByName('cnpj').AsString
+    else
+      lfrmClienteCadastro.CPFCNPJ := DM.qryCliente.FieldByName('cpf').AsString;
+
+    lfrmClienteCadastro.DataNascimento := DM.qryCliente.FieldByName('DtNascimento').AsString;
+    lfrmClienteCadastro.ShowModal;
+    DM.qryCliente.DisableControls;
+  finally
+    FreeAndNil(lfrmClienteCadastro);
+    DM.qryCliente.Close;
+    DM.qryCliente.Open;
+    DM.qryCliente.EnableControls;
+  end;
+end;
+
+procedure TfrmClienteAltera.btnFecharClick(Sender: TObject);
+begin
+  DM.qryCliente.Close;
+  Close;
+end;
+
+procedure TfrmClienteAltera.FormShow(Sender: TObject);
+begin
+  DM.qryCliente.Open;
+end;
+
+end.

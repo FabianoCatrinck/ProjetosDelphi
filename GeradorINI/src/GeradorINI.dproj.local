@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/10/11 13:02:17.000.996,=d:\ProjetosDelphi\Unit1.pas</Transaction>
+    <Transaction>2023/06/20 20:59:41.000.738,=d:\ProjetosDelphi\Unit1.pas</Transaction>
+    <Transaction>2023/10/09 18:30:58.000.943,=D:\ProjetosDelphi\Unit1.pas</Transaction>
+    <Transaction>2023/10/09 18:39:21.000.894,=D:\ProjetosDelphi\Unit1.pas</Transaction>
+    <Transaction>2023/10/09 18:41:27.000.638,D:\ProjetosDelphi\Unit1.dfm=D:\ProjetosDelphi\GeradorINI\TelaPrincipal.dfm</Transaction>
+    <Transaction>2023/10/09 18:41:27.000.638,D:\ProjetosDelphi\Unit1.pas=D:\ProjetosDelphi\GeradorINI\TelaPrincipal.pas</Transaction>
+    <Transaction>2023/10/09 18:42:01.000.195,D:\ProjetosDelphi\Project1.dproj=D:\ProjetosDelphi\GeradorINI\GeradorINI.dproj</Transaction>
+    <Transaction>2023/10/09 18:52:15.000.834,=D:\ProjetosDelphi\GeradorINI\Unit1.pas</Transaction>
+    <Transaction>2023/10/09 18:54:24.000.032,D:\ProjetosDelphi\GeradorINI\Unit1.dfm=D:\ProjetosDelphi\GeradorINI\DataModule.dfm</Transaction>
+    <Transaction>2023/10/09 18:54:24.000.032,D:\ProjetosDelphi\GeradorINI\Unit1.pas=D:\ProjetosDelphi\GeradorINI\DataModule.pas</Transaction>
+    <Transaction>2023/10/09 19:00:20.000.551,=D:\ProjetosDelphi\GeradorINI\Unit1.pas</Transaction>
+    <Transaction>2023/10/09 19:04:21.000.648,D:\ProjetosDelphi\GeradorINI\Unit1.dfm=D:\ProjetosDelphi\GeradorINI\Empresas.dfm</Transaction>
+    <Transaction>2023/10/09 19:04:21.000.648,D:\ProjetosDelphi\GeradorINI\Unit1.pas=D:\ProjetosDelphi\GeradorINI\Empresas.pas</Transaction>
+    <Transaction>2023/10/09 19:09:47.000.617,D:\ProjetosDelphi\GeradorINI\DataModule.pas=</Transaction>
+    <Transaction>2023/10/09 19:10:07.000.407,=D:\ProjetosDelphi\GeradorINI\Unit1.pas</Transaction>
+    <Transaction>2023/10/09 19:10:20.000.573,D:\ProjetosDelphi\GeradorINI\Unit1.dfm=D:\ProjetosDelphi\GeradorINI\DataModule.dfm</Transaction>
+    <Transaction>2023/10/09 19:10:20.000.573,D:\ProjetosDelphi\GeradorINI\Unit1.pas=D:\ProjetosDelphi\GeradorINI\DataModule.pas</Transaction>
+    <Transaction>2023/10/10 18:38:40.000.035,=D:\ProjetosDelphi\GeradorINI\src\Unit1.pas</Transaction>
+    <Transaction>2023/10/10 18:42:59.000.153,D:\ProjetosDelphi\GeradorINI\src\Parametros.pas=D:\ProjetosDelphi\GeradorINI\src\Unit1.pas</Transaction>
+    <Transaction>2023/10/10 18:42:59.000.153,D:\ProjetosDelphi\GeradorINI\src\Parametros.dfm=D:\ProjetosDelphi\GeradorINI\src\Unit1.dfm</Transaction>
+    <Transaction>2023/10/18 12:05:19.429,=D:\ProjetosDelphi\GeradorINI\src\Sobre.pas</Transaction>
+  </Transactions>
+</BorlandProject>

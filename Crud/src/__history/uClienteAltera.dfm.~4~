@@ -1,0 +1,80 @@
+object frmClienteAltera: TfrmClienteAltera
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Selecione o cliente para alterar'
+  ClientHeight = 203
+  ClientWidth = 464
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object grdDistribuidor: TDBGrid
+    AlignWithMargins = True
+    Left = 3
+    Top = 3
+    Width = 458
+    Height = 161
+    Align = alTop
+    DataSource = DM.dtsCliente
+    TabOrder = 0
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Segoe UI'
+    TitleFont.Style = []
+  end
+  object pnlOperacao: TPanel
+    AlignWithMargins = True
+    Left = 3
+    Top = 164
+    Width = 458
+    Height = 36
+    Align = alBottom
+    TabOrder = 1
+    DesignSize = (
+      458
+      36)
+    object btnFechar: TSpeedButton
+      Left = 374
+      Top = 5
+      Width = 75
+      Height = 25
+      Anchors = []
+      Caption = 'Fechar'
+      ImageIndex = 1
+      Images = frmPrincipal.ImageList
+      OnClick = btnFecharClick
+    end
+    object btnAlterar: TSpeedButton
+      Left = 293
+      Top = 5
+      Width = 75
+      Height = 25
+      Anchors = []
+      Caption = 'Alterar'
+      ImageIndex = 4
+      Images = frmPrincipal.ImageList
+      OnClick = btnAlterarClick
+    end
+    object SpeedButton1: TSpeedButton
+      Left = 213
+      Top = 5
+      Width = 75
+      Height = 25
+      Anchors = []
+      Caption = 'Excluir'
+      ImageIndex = 10
+      Images = frmPrincipal.ImageList
+      OnClick = btnAlterarClick
+    end
+  end
+end

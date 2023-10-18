@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/10/11 13:02:17.000.996,=d:\ProjetosDelphi\Unit1.pas</Transaction>
+    <Transaction>2023/03/21 16:56:03.000.470,=d:\ProjetosDelphi\Unit1.pas</Transaction>
+    <Transaction>2023/03/21 17:12:52.000.565,D:\ProjetosDelphi\Json\uPrincipal.pas=d:\ProjetosDelphi\Unit1.pas</Transaction>
+    <Transaction>2023/03/21 17:12:52.000.565,D:\ProjetosDelphi\Json\uPrincipal.dfm=d:\ProjetosDelphi\Unit1.dfm</Transaction>
+    <Transaction>2023/03/21 17:13:06.000.364,D:\ProjetosDelphi\Json\Json.dproj=d:\ProjetosDelphi\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

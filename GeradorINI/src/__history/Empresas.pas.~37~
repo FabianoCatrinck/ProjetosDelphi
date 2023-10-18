@@ -1,0 +1,286 @@
+unit Empresas;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, DataModule, Data.DB, Vcl.Grids,
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Mask,
+  Vcl.DBCtrls, DBClient, System.UITypes;
+
+type
+  TTelaEmpresas = class(TForm)
+    pnlBotoes: TPanel;
+    BotaoCadastrar: TBitBtn;
+    PageControl: TPageControl;
+    Consulta: TTabSheet;
+    Operacao: TTabSheet;
+    DBGrid: TDBGrid;
+    LabelNome: TLabel;
+    BotaoCancelar: TBitBtn;
+    BotaoSair: TBitBtn;
+    BotaoExcluir: TBitBtn;
+    BotaoAlterar: TBitBtn;
+    BotaoGravar: TBitBtn;
+    LabelPesquisa: TLabel;
+    EditPesquisa: TEdit;
+    EditNome: TEdit;
+    procedure BotaoCadastrarClick(Sender: TObject);
+    procedure BotaoCancelarClick(Sender: TObject);
+    procedure BotaoAlterarClick(Sender: TObject);
+    procedure BotaoExcluirClick(Sender: TObject);
+    procedure BotaoGravarClick(Sender: TObject);
+    procedure BotaoSairClick(Sender: TObject);
+    procedure EditPesquisaChange(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+    FCadastroExterno: Boolean;
+
+    function GetCadastroExterno: Boolean;
+    procedure SetCadastroExterno(Valor: Boolean);
+    procedure AjustarTela(const Acao: Byte = 0);
+    procedure DesativarBotoesDeOperacao();
+    procedure AtivarBotoesDeAcao();
+    procedure ExecutarOperacao(const Acao: Byte = 0);
+    procedure AtivarBotoesDeOperacao();
+    procedure DesativarBotoesDeAcao();
+    procedure ExcluirEmpresa();
+    procedure ApagarParametros(const Empresa: Integer);
+    procedure GravarEmpresa();
+    function ValidarEmpresa(): Boolean;
+    procedure SalvarArquivoEmpresas();
+  public
+    { Public declarations }
+    property CadastroExterno: Boolean read GetCadastroExterno write SetCadastroExterno;
+  end;
+
+implementation
+
+{$R *.dfm}
+
+procedure TTelaEmpresas.AjustarTela(const Acao: Byte = 0);
+begin
+  case Acao of
+      //Cadastrar ou alterar
+      0, 1: begin
+              DesativarBotoesDeOperacao();
+              AtivarBotoesDeAcao();
+              PageControl.ActivePage := Operacao;
+              ExecutarOperacao(Acao);
+            end;
+
+      //Excluir
+      2: ExecutarOperacao(Acao);
+
+      //Sair
+      5: begin
+           SalvarArquivoEmpresas();
+           Close;
+         end;
+
+  //Gravar, cancelar e sair
+  else
+    begin
+      ExecutarOperacao(Acao);
+      AtivarBotoesDeOperacao();
+      DesativarBotoesDeAcao();
+      PageControl.ActivePage := Consulta;
+    end;
+  end;
+end;
+
+procedure TTelaEmpresas.ApagarParametros(const Empresa: Integer);
+begin
+
+end;
+
+procedure TTelaEmpresas.AtivarBotoesDeAcao();
+begin
+  BotaoGravar.Enabled := True;
+  BotaoCancelar.Enabled := True;
+end;
+
+procedure TTelaEmpresas.AtivarBotoesDeOperacao;
+begin
+  BotaoCadastrar.Enabled := True;
+  BotaoAlterar.Enabled := True;
+  BotaoExcluir.Enabled := True;
+  BotaoSair.Enabled := True;
+end;
+
+procedure TTelaEmpresas.BotaoAlterarClick(Sender: TObject);
+begin
+  AjustarTela(1);
+end;
+
+procedure TTelaEmpresas.BotaoCadastrarClick(Sender: TObject);
+begin
+  AjustarTela(0);
+end;
+
+procedure TTelaEmpresas.BotaoCancelarClick(Sender: TObject);
+begin
+  AjustarTela(4);
+end;
+
+procedure TTelaEmpresas.BotaoExcluirClick(Sender: TObject);
+begin
+  AjustarTela(2);
+end;
+
+procedure TTelaEmpresas.BotaoGravarClick(Sender: TObject);
+begin
+  AjustarTela(3);
+end;
+
+procedure TTelaEmpresas.BotaoSairClick(Sender: TObject);
+begin
+  AjustarTela(5);
+end;
+
+procedure TTelaEmpresas.DesativarBotoesDeAcao();
+begin
+  BotaoGravar.Enabled := False;
+  BotaoCancelar.Enabled := False;
+end;
+
+procedure TTelaEmpresas.DesativarBotoesDeOperacao;
+begin
+  BotaoCadastrar.Enabled := False;
+  BotaoAlterar.Enabled := False;
+  BotaoExcluir.Enabled := False;
+  BotaoSair.Enabled := False;
+end;
+
+procedure TTelaEmpresas.EditPesquisaChange(Sender: TObject);
+begin
+  DM.DadosEmpresa.FindNearest([EditPesquisa.Text]);
+end;
+
+procedure TTelaEmpresas.ExcluirEmpresa();
+begin
+  if not DM.DadosEmpresa.IsEmpty then
+    if MessageDlg('Confirma a exclusão da empresa? Todos os parâmetros que tiverem sido cadastrados também serão apagados com ela!', mtConfirmation, [mbyes, mbNo], 0) = mrYes then
+    begin
+      try
+        ApagarParametros(DM.DadosEmpresa.FieldByName('Codigo').AsInteger);
+        DM.DadosEmpresa.Delete;
+        MessageDlg('Empresa excluída com sucesso.', mtInformation, [mbOk], 0);
+      except
+        On E:Exception do
+        begin
+          MessageDlg('Ocorreu o erro ' + E.Message + ' ao tentar excluir a empresa.', mtInformation, [mbOk], 0);
+        end;
+      end;
+    end;
+end;
+
+procedure TTelaEmpresas.ExecutarOperacao(const Acao: Byte);
+begin
+  try
+    case Acao of
+      //Cadastrar
+      0: begin
+           EditNome.Text := '';
+           DM.DadosEmpresa.Append;
+         end;
+
+      //Alterar
+      1: if not DM.DadosEmpresa.IsEmpty then
+         begin
+           EditNome.Text := DM.DadosEmpresa.FieldByName('Nome').AsString;
+           DM.DadosEmpresa.Edit;
+         end;
+
+      //Excluir
+      2: ExcluirEmpresa();
+
+      //Gravar
+      3: GravarEmpresa();
+
+      //Cancelar
+      4: DM.DadosEmpresa.Cancel;
+    end;
+  finally
+    if EditNome.CanFocus then
+      EditNome.SetFocus;
+  end;
+end;
+
+procedure TTelaEmpresas.FormShow(Sender: TObject);
+begin
+  if not DM.DadosEmpresa.Active then
+    DM.DadosEmpresa.CreateDataSet;
+
+  if not FCadastroExterno then
+    PageControl.ActivePage := Consulta
+  else
+    BotaoCadastrar.Click;
+end;
+
+function TTelaEmpresas.GetCadastroExterno(): Boolean;
+begin
+  Result := FCadastroExterno;
+end;
+
+procedure TTelaEmpresas.GravarEmpresa();
+begin
+  if ValidarEmpresa() then
+    try
+      DM.DadosEmpresa.FieldByName('Nome').AsString := EditNome.Text;
+      DM.DadosEmpresa.Post;
+      MessageDlg('Empresa gravada com sucesso.', mtInformation, [mbOk], 0);
+    Except
+      On E:Exception do
+      begin
+        MessageDlg('Ocorreu o erro ' + E.Message + ' ao gravar a empresa.', mtInformation, [mbOk], 0);
+      end;
+    end;
+end;
+
+procedure TTelaEmpresas.SalvarArquivoEmpresas();
+var
+  PastaDoAplicativo: String;
+begin
+  try
+    PastaDoAplicativo := ExtractFilePath(Application.ExeName);
+    DM.DadosEmpresa.SaveToFile(PastaDoAplicativo + '\Empresas.xml', dfXML);
+    MessageDlg('Arquivo de empresas salvo com sucesso.', mtInformation, [mbOk], 0);
+  except
+    On E:Exception do
+    begin
+      MessageDlg('Ocorreu o erro ' + E.Message + ' ao tentar gravar o arquivo da empresa.', mtInformation, [mbOk], 0);
+    end;
+  end;
+end;
+
+procedure TTelaEmpresas.SetCadastroExterno(Valor: Boolean);
+begin
+  FCadastroExterno := Valor;
+end;
+
+function TTelaEmpresas.ValidarEmpresa(): Boolean;
+begin
+  Result := True;
+
+  if Length(EditNome.Text) < 4 then
+    begin
+      MessageDlg('O nome do cliente precisa ter ao menos quatro caracteres. Verifique.', mtInformation, [mbOk], 0);
+      EditNome.SetFocus;
+      Result := False;
+      Abort;
+    end;
+  {else
+    try
+      StrToInt(DBEditNome.Text);
+      MessageDlg('O nome do cliente não pode conter somente números. Verifique.', mtInformation, [mbOk], 0);
+      DBEditNome.SetFocus;
+      Result := False;
+      Abort;
+    except
+
+    end; }
+end;
+
+end.
